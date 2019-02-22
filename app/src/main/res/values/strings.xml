@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Athiti Card</string>
+    <string name="tapCardField">Ready to read Athiti Card</string>
+    <string name="displayCardField">Athiti Card Number will appear here.</string>
+    <string name="aadharField">Aadhar Number</string>
+    <string name="panField">PAN Number</string>
+    <string name="EncDetailsHeading">Unique Identity</string>
+    <string name="GeneralDetHeading">General Details</string>
+    <string name="JobDetailsHeading">Work Details</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

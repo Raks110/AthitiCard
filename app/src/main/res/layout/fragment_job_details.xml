@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.mit.ic.athiticard.JobDetails">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_encDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF2196F3"
+            android:orientation="horizontal"
+            android:padding="30dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="#FF2196F3"
+                android:gravity="center_vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/JobDetailsHeading"
+                android:textColor="#FFF"
+                android:textSize="25sp" />
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/jobButton"
+                android:onClick="changeFragment"
+                android:src="@android:drawable/ic_media_next" />
+
+        </LinearLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="838dp"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintTop_toBottomOf="@+id/ll_encDetails">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_horizontal"
+                    android:text="Name of Employer"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/employerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:hint="Name"
+                    android:inputType="text"
+                    android:textSize="30sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_horizontal"
+                    android:text="Company Name"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/companyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:hint="Company Name"
+                    android:inputType="text"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_horizontal"
+                    android:text="Contact No. of Employer"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/employerPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:hint="Mobile No. of Employer"
+                    android:inputType="phone"
+                    android:textSize="30sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_horizontal"
+                    android:text="Type of Work"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/workType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:hint="Type of Work"
+                    android:inputType="text"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_horizontal"
+                    android:text="Work Address"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/workAddressStreet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:hint="Street"
+                    android:inputType="text"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/workAddressLandmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:hint="Landmark"
+                    android:inputType="text"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/workAddressCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:hint="City"
+                    android:inputType="text"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/workAddressState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:hint="State"
+                    android:inputType="text"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/workAddressPIN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:hint="PIN Code"
+                    android:inputType="text"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>
