@@ -49,23 +49,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }*/
 
-    /*private static final Pattern KEYCODE_PATTERN = Pattern.compile("/^[0-9]{10}$/");
+    private static final Pattern KEYCODE_PATTERN = Pattern.compile("KEYCODE_[0-9]");
     private com.google.android.material.button.MaterialButton viewNumber;
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         viewNumber = findViewById(R.id.tapButton);
-        String cardNumber;
+        String cardNumber = (String)viewNumber.getText();
 
         String key = KeyEvent.keyCodeToString(keyCode);
         Matcher matcher = KEYCODE_PATTERN.matcher(key);
         if (matcher.matches()) {
-            viewNumber.append(matcher.group(1));
+            cardNumber += matcher.group().charAt(matcher.group().length() -1);
         }
+
+        viewNumber.setText(cardNumber);
 
         viewNumber.setVisibility(View.VISIBLE);
 
         return super.onKeyDown(keyCode, event);
-    }*/
+    }
 }
