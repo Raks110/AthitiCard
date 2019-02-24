@@ -15,7 +15,7 @@
         app:layout_constraintGuide_percent="0.20" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView2"
+        android:id="@+id/materialCardViewGen2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardBackgroundColor="#455A64"
@@ -43,14 +43,13 @@
                 android:textColor="#EEEEEE" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/encButton"
+                android:id="@+id/generalButton"
                 style="@style/Widget.MaterialComponents.Button.Icon"
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
                 android:layout_alignParentTop="false"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="false"
-
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="16dp"
                 android:text="Next"
@@ -72,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView2"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardViewGen2"
         app:layout_constraintVertical_chainStyle="spread">
 
         <com.google.android.material.textfield.TextInputEditText
