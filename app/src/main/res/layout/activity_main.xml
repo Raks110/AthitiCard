@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/initAct"
-    android:name="com.mit.ic.athiticard.EncDetails"
+    android:name="com.mit.ic.athiticard.TapCard"
     tools:context=".MainActivity">
 
 
