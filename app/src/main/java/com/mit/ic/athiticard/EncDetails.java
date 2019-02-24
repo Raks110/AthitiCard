@@ -1,7 +1,6 @@
 package com.mit.ic.athiticard;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +34,7 @@ public class EncDetails extends Fragment {
 
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.initAct, new General());
+                fragmentTransaction.replace(R.id.initAct, new ClickPhoto());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
@@ -44,7 +43,5 @@ public class EncDetails extends Fragment {
 
         return view;
     }
-
-    
 
 }
