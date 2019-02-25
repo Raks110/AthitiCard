@@ -1,6 +1,5 @@
 package com.mit.ic.athiticard;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -8,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,7 +93,7 @@ public class ClickPhoto extends Fragment {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    private String currentPhotoPath;
+    private static String currentPhotoPath;
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -120,16 +120,21 @@ public class ClickPhoto extends Fragment {
 
             File photoFile = null;
             try {
+                Log.e("dispatchTakePicture","creatING file!!!!");
                 photoFile = createImageFile();
+                Log.e("Athiti","Created File!!!!!!!!!");
             } catch (IOException ex) {
 
             }
             if (photoFile != null) {
+                Log.e("Not Null","File ain't null");
                 Uri photoURI = FileProvider.getUriForFile(getActivity(),
                         "com.mit.ic.athiticard",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                Log.e("Cam started","YOLO!!");
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                Log.e("Cam done","YOLO!!!! Again!");
             }
         }
     }
@@ -137,7 +142,11 @@ public class ClickPhoto extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Log.e("Inside onActivityResult",data.toString());
             Bundle extras = data.getExtras();
+            /*if(extras == null){
+                extras.putParcelable(MediaStore.EXTRA_OUTPUT,);
+            }*/
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageView.setImageBitmap(imageBitmap);
         }
