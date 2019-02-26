@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static java.lang.Character.isDigit;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -30,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         String key = KeyEvent.keyCodeToString(keyCode);
         Matcher matcher = KEYCODE_PATTERN.matcher(key);
         if (matcher.matches()) {
-            cardNumber += matcher.group().charAt(matcher.group().length() -1);
+            if(isDigit(matcher.group().charAt(matcher.group().length() -1))){
+                cardNumber += matcher.group().charAt(matcher.group().length() -1);
+            }
         }
 
         viewNumber.setText(cardNumber);

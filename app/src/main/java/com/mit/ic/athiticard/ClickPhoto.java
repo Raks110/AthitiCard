@@ -2,6 +2,7 @@ package com.mit.ic.athiticard;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.mit.ic.athiticard.TapCard;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -64,7 +66,7 @@ public class ClickPhoto extends Fragment {
 
                 MaterialButton cb = view.findViewById(R.id.clickToLaunch);
                 cb.setText("Re-take Picture");
-                //dispatchTakePictureIntent();
+                dispatchTakePictureIntent();
 
             }
         });
@@ -98,7 +100,7 @@ public class ClickPhoto extends Fragment {
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
+        String imageFileName = TapCard.AthitiCardNumber;
         File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
@@ -108,6 +110,7 @@ public class ClickPhoto extends Fragment {
 
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
+        Log.e("Storage Loc",currentPhotoPath);
         return image;
     }
 
@@ -121,6 +124,7 @@ public class ClickPhoto extends Fragment {
             File photoFile = null;
             try {
                 Log.e("dispatchTakePicture","creatING file!!!!");
+                Log.e("dispatchTakePicture",TapCard.AthitiCardNumber);
                 photoFile = createImageFile();
                 Log.e("Athiti","Created File!!!!!!!!!");
             } catch (IOException ex) {
@@ -142,13 +146,18 @@ public class ClickPhoto extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Log.e("Inside onActivityResult",data.toString());
-            Bundle extras = data.getExtras();
+            // Log.e("Inside onActivityResult",data.toString());
+            //Bundle extras = data.getExtras();
             /*if(extras == null){
                 extras.putParcelable(MediaStore.EXTRA_OUTPUT,);
             }*/
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imageBitmap);
+            //Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            File imgFile = new File(currentPhotoPath);
+            if(imgFile.exists()){
+                Bitmap bitImages = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                imageView.setImageBitmap(bitImages);
+            }
         }
     }
 
