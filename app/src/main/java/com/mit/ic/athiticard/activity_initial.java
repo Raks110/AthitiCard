@@ -24,11 +24,15 @@ public class activity_initial extends AppCompatActivity {
     }
 
     public void launchVendorReg(View view){
-        setContentView(R.layout.activity_vendor_init);
+        Intent intent = new Intent(this,VendorInit.class);
+        intent.putExtra("key","success");
+        startActivity(intent);
     }
 
     public void launchUserUpdate(View view) {
-        setContentView(R.layout.activity_update_user);
+        Intent intent = new Intent(this,UpdateUser.class);
+        intent.putExtra("key","success");
+        startActivity(intent);
     }
 
 }
