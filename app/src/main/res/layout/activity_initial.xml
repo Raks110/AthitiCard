@@ -29,7 +29,7 @@
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:id="@+id/welcomeTV"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/newUser"
         android:layout_width="250dp"
         android:layout_height="66dp"
@@ -43,6 +43,8 @@
         android:paddingRight="20dp"
         android:text="New User Registration"
         android:textAllCaps="false"
+        app:icon="@drawable/ic_baseline_face_24px"
+        app:iconTint="#000"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:textColor="#000"
         android:textSize="15sp"
@@ -68,6 +70,8 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="New Vendor Registration"
+        app:icon="@drawable/ic_baseline_store"
+        app:iconTint="#000"
         android:textAllCaps="false"
         android:textSize="15sp"
         android:visibility="visible"
@@ -93,6 +97,8 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="Update Existing User Info"
+        app:icon="@drawable/ic_baseline_update"
+        app:iconTint="#000"
         android:textAllCaps="false"
         android:textSize="15sp"
         android:visibility="visible"
