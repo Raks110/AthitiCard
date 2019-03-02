@@ -33,16 +33,17 @@ public class vendorShop extends Fragment {
             @Override
             public void onClick(View v) {
 
-                com.google.android.material.card.MaterialCardView mcv = view.findViewById(R.id.materialCardViewGen2);
-                mcv.setVisibility(View.INVISIBLE);
-
-                RelativeLayout rv = view.findViewById(R.id.scrollGeneral);
-                rv.setVisibility(View.INVISIBLE);
 
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
+
+                com.google.android.material.card.MaterialCardView mcv = view.findViewById(R.id.materialCardViewGenShop2);
+                mcv.setVisibility(View.INVISIBLE);
+
+                RelativeLayout rv = view.findViewById(R.id.scrollGeneralShop);
+                rv.setVisibility(View.INVISIBLE);
+
                 fragmentTransaction.replace(R.id.initActVendor, new ShopDetails());
-                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
             }

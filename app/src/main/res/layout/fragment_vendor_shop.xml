@@ -15,7 +15,7 @@
         app:layout_constraintGuide_percent="0.20" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardViewGen2"
+        android:id="@+id/materialCardViewGenShop2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardBackgroundColor="#455A64"
@@ -60,7 +60,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <RelativeLayout
-        android:id="@+id/scrollGeneral"
+        android:id="@+id/scrollGeneralShop"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"

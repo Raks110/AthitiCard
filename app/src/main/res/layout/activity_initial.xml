@@ -5,87 +5,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_initial">
+    tools:context=".activity_initial"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/background_image2">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.4" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardViewInit2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:cardBackgroundColor="#455A64"
-        app:cardElevation="6dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTap"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="false"
-                android:layout_alignParentBottom="false"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="Welcome"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-                android:textColor="#EEEEEE" />
-
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/newUser"
-        style="@style/Widget.MaterialComponents.Button.Icon"
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guidelineTap"
+        app:layout_constraintBottom_toTopOf="@id/newUser"
+        android:text="athiti"
+        android:textColor="#FFF"
+        android:textSize="30sp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:id="@+id/welcomeTV"/>
+
+    <Button
+        android:id="@+id/newUser"
+        android:layout_width="250dp"
         android:layout_height="66dp"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="false"
         android:layout_centerVertical="true"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:textColor="#000"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:text="New User Registration"
         android:textAllCaps="false"
-        android:textSize="20sp"
-        android:visibility="visible"
-        app:cornerRadius="38dp"
+        android:textSize="15sp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:onClick="launchUserReg"
         app:layout_constraintBottom_toTopOf="@id/newVendor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardViewInit2"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTV"
         app:layout_constraintVertical_bias="0.492" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/newVendor"
         style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="66dp"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="false"
         android:layout_centerVertical="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:onClick="launchVendorReg"
+        android:textColor="#000"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="New Vendor Registration"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:visibility="visible"
-        app:cornerRadius="38dp"
-        android:onClick="launchVendorReg"
         app:layout_constraintBottom_toTopOf="@id/existingUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
@@ -96,20 +81,21 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/existingUser"
         style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="66dp"
         android:layout_alignParentTop="false"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="false"
         android:layout_centerVertical="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="Update Existing User Info"
+        android:textColor="#000"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:onClick="launchUserUpdate"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Update Existing User Info"
         android:textAllCaps="false"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:visibility="visible"
-        app:cornerRadius="38dp"
         app:layout_constraintBottom_toTopOf="@id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
@@ -122,6 +108,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
