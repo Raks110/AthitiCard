@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".activity_initial"
     android:fitsSystemWindows="true"
-    android:background="@drawable/background_image2">
+    android:background="@drawable/image1">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
         app:layout_constraintBottom_toTopOf="@id/newUser"
         android:text="athiti"
         android:textColor="#FFF"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:id="@+id/welcomeTV"/>
 
@@ -37,15 +37,15 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="false"
         android:layout_centerVertical="true"
-        android:layout_marginTop="32dp"
-        android:textColor="#000"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        android:text="New User Registration"
-        android:textAllCaps="false"
-        android:textSize="15sp"
+        android:layout_marginTop="16dp"
+        android:onClick="launchUserReg"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:onClick="launchUserReg"
+        android:text="New User Registration"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textColor="#000"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@id/newVendor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
