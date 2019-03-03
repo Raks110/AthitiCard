@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mit.ic.athiticard.ClickPhoto">
+    tools:context="com.mit.ic.athiticard.ClickPhoto"
+    android:background="@drawable/image1"
+    android:theme="@style/ButtonTheme">
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -18,7 +20,7 @@
         android:id="@+id/materialCardViewPhoto2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardBackgroundColor="#455A64"
+        app:cardBackgroundColor="#00000000"
         app:cardElevation="6dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,57 +64,65 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:drawableStart="@drawable/ic_info"
-        android:drawablePadding="8dp"
-        android:gravity="center_vertical"
-        android:text="Photo should show the face clearly."
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardViewPhoto2"
-        app:layout_constraintBottom_toTopOf="@+id/photoFrame" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#E4FFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/materialCardViewPhoto2">
 
-    <ImageView
-        android:gravity="center_vertical"
-        android:id="@+id/photoFrame"
-        android:layout_width="360dp"
-        android:layout_height="360dp"
-        app:layout_constraintBottom_toTopOf="@+id/clickToLaunch"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ContentDescription"/>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="8dp"
+            android:drawableStart="@drawable/ic_info"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:text="Photo should show the face clearly."
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            app:layout_constraintBottom_toTopOf="@+id/photoFrame"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/clickToLaunch"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="false"
-        android:layout_centerVertical="true"
-        android:text="Take a Picture"
-        android:textAllCaps="false"
-        app:cornerRadius="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/photoFrame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/photoFrame"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:gravity="center_vertical"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:ignore="ContentDescription"
+            app:layout_constraintBottom_toTopOf="@id/clickToLaunch"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/clickToLaunch"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false"
+            android:layout_centerVertical="true"
+            android:text="Take a Picture"
+            android:textAllCaps="false"
+            app:cornerRadius="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/photoFrame"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.97" />
+        app:layout_constraintGuide_percent="1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

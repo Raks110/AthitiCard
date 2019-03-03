@@ -5,8 +5,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,9 +17,10 @@ import androidx.fragment.app.FragmentTransaction;
 public class TapCard extends Fragment {
 
     public static String AthitiCardNumber;
+    public static int flag;
 
     public TapCard() {
-
+        flag = 1;
     }
 
     @Override
@@ -32,14 +35,22 @@ public class TapCard extends Fragment {
             @Override
             public void onClick(View v) {
 
-                com.google.android.material.card.MaterialCardView mcv = view.findViewById(R.id.materialCardViewTap2);
-                mcv.setVisibility(View.INVISIBLE);
+                if(flag==1){
+                    flag = 0;
+                    return;
+                }
+
+                MaterialCardView mcv = view.findViewById(R.id.materialCardViewTap2);
+                mcv.setVisibility(View.GONE);
 
                 MaterialButton mb = v.findViewById(R.id.tapButton);
 
                 AthitiCardNumber = (String)mb.getText();
 
                 mb.setVisibility(View.INVISIBLE);
+
+                RelativeLayout rl = view.findViewById(R.id.rl_tap);
+                rl.setVisibility(View.INVISIBLE);
 
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();

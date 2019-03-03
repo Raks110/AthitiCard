@@ -11,4 +11,12 @@
 
     </style>
 
+    <style name="ButtonTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorAccent">#0f5b76</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
 </resources>
