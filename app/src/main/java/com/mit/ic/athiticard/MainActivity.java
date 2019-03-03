@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import java.security.Key;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if(TapCard.flag == 0){
+        if(TapCard.flag == 0 || keyCode == KeyEvent.KEYCODE_BACK){
             return super.onKeyDown(keyCode, event);
         }
 
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         String key = KeyEvent.keyCodeToString(keyCode);
         Matcher matcher = KEYCODE_PATTERN.matcher(key);
-        Log.e("Entered key: ",key);
         if (matcher.matches()) {
             cardNumber += matcher.group().charAt(matcher.group().length() -1);
         }

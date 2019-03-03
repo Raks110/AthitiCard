@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mit.ic.athiticard.TapCard">
+    tools:context="com.mit.ic.athiticard.UpdateUser"
+    android:background="@drawable/image1"
+    android:theme="@style/ButtonTheme">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTap"
@@ -18,7 +20,7 @@
         android:id="@+id/materialCardViewTap2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardBackgroundColor="#455A64"
+        app:cardBackgroundColor="#00000000"
         app:cardElevation="6dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineTap"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,28 +47,36 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/tapButton"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="66dp"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="false"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text=""
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        app:cornerRadius="38dp"
+    <RelativeLayout
+        android:id="@+id/rl_tap"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#E4FFFFFF"
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardViewTap2"
-        app:layout_constraintVertical_bias="0.492" />
+        app:layout_constraintTop_toBottomOf="@id/materialCardViewTap2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tapButton"
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text=""
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.524"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.492"/>
+
+    </RelativeLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

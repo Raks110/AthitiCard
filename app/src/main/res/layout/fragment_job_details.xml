@@ -23,6 +23,7 @@
         android:layout_height="0dp"
         app:cardBackgroundColor="#00455A64"
         app:cardElevation="6dp"
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
