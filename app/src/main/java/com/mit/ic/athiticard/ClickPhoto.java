@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 
+import com.roger.catloadinglibrary.CatLoadingView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -13,6 +14,7 @@ import com.squareup.picasso.Target;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -30,6 +32,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.FragmentManager;
@@ -45,6 +48,8 @@ public class ClickPhoto extends Fragment {
     public ClickPhoto() {
         // Required empty public constructor
     }
+
+    final CatLoadingView mView = new CatLoadingView();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,6 +77,9 @@ public class ClickPhoto extends Fragment {
 
                 MaterialButton cb = view.findViewById(R.id.clickToLaunch);
                 cb.setText("Re-take Picture");
+
+                mView.show(getFragmentManager(), "");
+
                 dispatchTakePictureIntent();
 
             }
@@ -156,7 +164,14 @@ public class ClickPhoto extends Fragment {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             File imgFile = new File(currentPhotoPath);
             if(imgFile.exists()){
-                Picasso.with(getContext()).load(imgFile).into(imageView);
+                final AtomicBoolean loaded = new AtomicBoolean();
+                Picasso.with(getContext()).load(imgFile).into(imageView, new Callback.EmptyCallback() {
+                    @Override public void onSuccess() {
+                        loaded.set(true);
+                        Log.e("Picasso","Loaded Image");
+                        mView.dismissAllowingStateLoss();
+                    }
+                });
             }
         }
     }

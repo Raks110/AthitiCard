@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class UpdateUser extends AppCompatActivity {
 
-    private static String AthitiCardNumber;
+    public static String AthitiCardNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
