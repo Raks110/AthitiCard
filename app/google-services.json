@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "347933249099",
+    "firebase_url": "https://athititest.firebaseio.com",
+    "project_id": "athititest",
+    "storage_bucket": "athititest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347933249099:android:bb49c39ad875b51d",
+        "android_client_info": {
+          "package_name": "com.mit.ic.athiticard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "347933249099-q50psuuu8bnv87d8b9vgqqk85lrufbid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTdyAE_GpZR2vHMrXwdXLNHdc0o29j9J0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
