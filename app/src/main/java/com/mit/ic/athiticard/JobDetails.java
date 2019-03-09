@@ -1,9 +1,11 @@
 package com.mit.ic.athiticard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -34,11 +36,11 @@ public class JobDetails extends Fragment {
                 com.google.android.material.card.MaterialCardView mcv = view.findViewById(R.id.materialCardViewJob2);
                 mcv.setVisibility(View.INVISIBLE);
 
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.initAct, new JobDetails());
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                Intent intent = new Intent(getContext(),activity_initial.class);
+                intent.putExtra("key","success");
+                startActivity(intent);
+
+                Toast.makeText(getContext(), "Great! The user has been added successfully!", Toast.LENGTH_LONG).show();
 
             }
         });

@@ -13,6 +13,7 @@ public class activity_initial extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e("actinit","Inside onCreate");
+
         setContentView(R.layout.activity_initial);
 
         this.getWindow().getDecorView().setSystemUiVisibility(
