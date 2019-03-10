@@ -45,7 +45,7 @@ public class TapCard extends Fragment {
 
                 MaterialButton mb = v.findViewById(R.id.tapButton);
 
-                AthitiCardNumber = (String)mb.getText();
+                AthitiCardNumber = mb.getText().toString();
 
                 mb.setVisibility(View.INVISIBLE);
 

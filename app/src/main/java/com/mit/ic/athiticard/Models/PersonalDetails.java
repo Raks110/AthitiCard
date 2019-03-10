@@ -9,7 +9,7 @@ public class PersonalDetails {
     private String name;
     @SerializedName("phoneNumber")
     @Expose
-    private Integer phoneNumber;
+    private String phoneNumber;
     @SerializedName("address")
     @Expose
     private Address address;
@@ -22,11 +22,11 @@ public class PersonalDetails {
         this.name = name;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -6,10 +6,10 @@ public class User {
 
     @SerializedName("cardNumber")
     @Expose
-    private Integer cardNumber;
+    private String cardNumber;
     @SerializedName("aadharNumber")
     @Expose
-    private Integer aadharNumber;
+    private String aadharNumber;
     @SerializedName("panNumber")
     @Expose
     private String panNumber;
@@ -20,19 +20,19 @@ public class User {
     @Expose
     private JobDetails jobDetails;
 
-    public Integer getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(Integer cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
-    public Integer getAadharNumber() {
+    public String getAadharNumber() {
         return aadharNumber;
     }
 
-    public void setAadharNumber(Integer aadharNumber) {
+    public void setAadharNumber(String aadharNumber) {
         this.aadharNumber = aadharNumber;
     }
 

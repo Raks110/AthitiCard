@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -12,6 +13,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class EncDetails extends Fragment {
 
+    public static String aadharNumber;
+    public static String panNumber;
 
     public EncDetails() {
 
@@ -28,6 +31,12 @@ public class EncDetails extends Fragment {
         onEncButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                TextInputEditText et = view.findViewById(R.id.PANNumber);
+                panNumber = et.getText().toString();
+
+                et = view.findViewById(R.id.AadharNumber);
+                aadharNumber = et.getText().toString();
 
                 com.google.android.material.card.MaterialCardView mcv = view.findViewById(R.id.materialCardViewEnc2);
                 mcv.setVisibility(View.INVISIBLE);

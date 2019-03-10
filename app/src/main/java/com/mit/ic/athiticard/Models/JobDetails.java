@@ -9,7 +9,7 @@ public class JobDetails {
     private String companyName;
     @SerializedName("companyNumber")
     @Expose
-    private Integer companyNumber;
+    private String companyNumber;
     @SerializedName("employerName")
     @Expose
     private String employerName;
@@ -25,11 +25,11 @@ public class JobDetails {
         this.companyName = companyName;
     }
 
-    public Integer getCompanyNumber() {
+    public String getCompanyNumber() {
         return companyNumber;
     }
 
-    public void setCompanyNumber(Integer companyNumber) {
+    public void setCompanyNumber(String companyNumber) {
         this.companyNumber = companyNumber;
     }
 
