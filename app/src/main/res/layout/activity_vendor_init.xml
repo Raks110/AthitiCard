@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/initActVendor"
-    android:name="com.mit.ic.athiticard.vendorShop"
+    android:name="com.mit.ic.athiticard.ShopDetails"
     tools:context="com.mit.ic.athiticard.VendorInit">
 
 
