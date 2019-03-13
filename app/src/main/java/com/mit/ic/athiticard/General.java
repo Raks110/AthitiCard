@@ -1,22 +1,13 @@
 package com.mit.ic.athiticard;
 
-import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -29,10 +20,6 @@ import com.mit.ic.athiticard.Models.PersonalDetails;
 import com.mit.ic.athiticard.Models.Address;
 import com.mit.ic.athiticard.Utilities.RandomPin;
 import com.mit.ic.athiticard.Utilities.SendSms;
-import com.mit.ic.athiticard.Utilities.SmsListener;
-import com.roger.catloadinglibrary.CatLoadingView;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class General extends Fragment {
 
@@ -52,12 +39,32 @@ public class General extends Fragment {
 
         int randomNumber = rpin.generateRandomNumber();
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         final SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("OTP_PIN", randomNumber);
         editor.apply();
 
         final View view = inflater.inflate(R.layout.fragment_general, container, false);
+
+        MaterialButton onOtpButton = view.findViewById(R.id.getOtp);
+
+        onOtpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                TextInputEditText et;
+
+                et = view.findViewById(R.id.PhoneNumber);
+                final String preqText = et.getText().toString();
+
+                pd.setPhoneNumber("0");
+
+                SendSms.sendMsg(preqText, preferences.getInt("OTP_PIN",0));
+
+                Toast.makeText(getContext(), "OTP has been sent to " + preqText, Toast.LENGTH_LONG).show();
+
+            }
+        });
 
         MaterialButton onGenButton = view.findViewById(R.id.generalButton);
 
@@ -98,35 +105,17 @@ public class General extends Fragment {
 
                 pd.setName(reqText);
 
+                et = view.findViewById(R.id.otpEnter);
+                String pin = et.getText().toString();
 
                 et = view.findViewById(R.id.PhoneNumber);
-                final String preqText = et.getText().toString();
+                String preqText = et.getText().toString();
 
-                pd.setPhoneNumber("0");
+                int reqPin = Integer.parseInt(pin);
+                if(reqPin == preferences.getInt("OTP_PIN",0)){
+                    pd.setPhoneNumber(preqText);
+                }
 
-                final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-
-                SendSms.sendMsg(preqText, preferences.getInt("OTP_PIN",0));
-
-                final CatLoadingView clv = new CatLoadingView();
-                clv.show(getFragmentManager(),"");
-                
-                SmsListener receiveSMS = new SmsListener() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        try {
-                            clv.dismissAllowingStateLoss();
-                            String smsBody = intent.getStringExtra("sms");
-                            String pin = smsBody.replace("Athiti OTP is: ", "").trim();
-                            int reqPin = Integer.parseInt(pin);
-                            if(reqPin == preferences.getInt("OTP_PIN",0)){
-                                pd.setPhoneNumber(preqText);
-                            }
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                };
 
                 if(pd.getPhoneNumber() == "0"){
                     Toast.makeText(getContext(), "OTP didn't match.", Toast.LENGTH_LONG).show();

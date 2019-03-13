@@ -126,7 +126,7 @@
                     android:layout_marginEnd="16dp"
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true"
-                    app:layout_constraintBottom_toTopOf="@+id/infoAddress"
+                    app:layout_constraintBottom_toTopOf="@+id/otp_ll"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -140,6 +140,49 @@
                         android:hint="Phone Number"
                         android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/otp_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@id/infoAddress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/PhoneNumberWrap">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Send OTP"
+                        android:id="@+id/getOtp"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="center_vertical" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/otpEnterWrap"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="9dp"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/otpEnter"
+                            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="One Time Password"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/infoAddress"
@@ -155,7 +198,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/AddressStreetWrap"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/PhoneNumberWrap" />
+                    app:layout_constraintTop_toBottomOf="@+id/otp_ll" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/AddressStreetWrap"

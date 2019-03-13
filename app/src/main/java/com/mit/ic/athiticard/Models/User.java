@@ -2,6 +2,9 @@ package com.mit.ic.athiticard.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class User {
 
     @SerializedName("cardNumber")
@@ -19,6 +22,20 @@ public class User {
     @SerializedName("jobDetails")
     @Expose
     private JobDetails jobDetails;
+    @SerializedName("validity")
+    @Expose
+    private Date validity;
+
+    public Date getValidity() { return validity; }
+
+    public void setValidity(){
+        Date current = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(current);
+        cal.set(Calendar.MONTH, (cal.get(Calendar.MONTH)+6));
+        current = cal.getTime();
+        this.validity = current;
+    }
 
     public String getCardNumber() {
         return cardNumber;

@@ -1,34 +1,41 @@
 package com.mit.ic.athiticard.Utilities;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class SendSms {
-    public static String sendMsg(String phoneNumber,int pin) {
+public class SendSms extends AsyncTask<URL,String,String> {
+
+    public static void sendMsg(String phoneNumber,int pin) {
+
+        String apiKey = "apikey=" + "/xoct6wXvBw-zBENiKx0opMW70VJIJwvhIey5kS9Hh";
+        String message = "&message=" + "Athiti OTP is: " + Integer.toString(pin);
+        String sender = "&sender=" + "TXTLCL";
+        String numbers = "&numbers=91" + phoneNumber;
+        String data = apiKey + numbers + message + sender;
+
+        try {
+            URL url = new URL("https://api.textlocal.in/send/?" + data);
+            new SendSms().execute(url);
+        }
+        catch(Exception e){}
+    }
+
+    @Override
+    protected String doInBackground(URL...urls) {
         try {
             // Construct data
-            String apiKey = "apikey=" + "/xoct6wXvBw-zBENiKx0opMW70VJIJwvhIey5kS9Hh";
-            String message = "&message=" + "Athiti OTP is: " + Integer.toString(pin);
-            String sender = "&sender=" + "TXTLCL";
-            String numbers = "&numbers=91" + phoneNumber;
 
             // Send data
-            HttpURLConnection conn = (HttpURLConnection) new URL("https://api.textlocal.in/send/?").openConnection();
-            String data = apiKey + numbers + message + sender;
-            Log.e(TAG,data);
+            HttpURLConnection conn = (HttpURLConnection)urls[0].openConnection();
             conn.setDoOutput(true);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
-            conn.getOutputStream().write(data.getBytes("UTF-8"));
+            conn.setRequestMethod("GET");
             final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             final StringBuffer stringBuffer = new StringBuffer();
             String line;
@@ -39,8 +46,8 @@ public class SendSms {
 
             return stringBuffer.toString();
         } catch (Exception e) {
-            System.out.println("Error SMS "+e);
-            return "Error "+e;
+            Log.e(TAG,e.toString());
+            return e.toString();
         }
     }
 }

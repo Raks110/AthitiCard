@@ -105,7 +105,7 @@ public class JobDetails extends Fragment {
                 user.setAadharNumber(EncDetails.aadharNumber);
                 user.setPanNumber(EncDetails.panNumber);
                 user.setCardNumber(TapCard.AthitiCardNumber);
-
+                user.setValidity();
                 writeNewUser(user);
 
                 if(status) {
