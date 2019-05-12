@@ -61,7 +61,8 @@ public class General extends Fragment {
 
                 SendSms.sendMsg(preqText, preferences.getInt("OTP_PIN",0));
 
-                Toast.makeText(getContext(), "OTP has been sent to " + preqText, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), "OTP has been sent to " + preqText, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"OTP is " + preferences.getInt("OTP_PIN",0),Toast.LENGTH_LONG).show();
 
             }
         });

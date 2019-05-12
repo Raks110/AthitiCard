@@ -1,23 +1,40 @@
 package com.mit.ic.athiticard;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.mit.ic.athiticard.Models.CompanyAddress;
 import com.mit.ic.athiticard.Models.User;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import static com.mit.ic.athiticard.ClickPhoto.currentPhotoPath;
 
 
 public class JobDetails extends Fragment {
@@ -25,6 +42,11 @@ public class JobDetails extends Fragment {
     public static com.mit.ic.athiticard.Models.JobDetails jd;
     private DatabaseReference mDatabase;
     private boolean status;
+
+    private static User user;
+
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
 
     public JobDetails() {
 
@@ -34,6 +56,13 @@ public class JobDetails extends Fragment {
 
         mDatabase.child("users").child(user.getCardNumber()).setValue(user);
         status = true;
+
+    }
+
+    private void removeUser(User user) {
+
+        mDatabase.child("users").child(user.getCardNumber()).removeValue();
+        status = false;
 
     }
 
@@ -99,14 +128,57 @@ public class JobDetails extends Fragment {
                 com.google.android.material.card.MaterialCardView mcv = view.findViewById(R.id.materialCardViewJob2);
                 mcv.setVisibility(View.INVISIBLE);
 
-                User user = new User();
+                user = new User();
                 user.setPersonalDetails(General.pd);
                 user.setJobDetails(jd);
                 user.setAadharNumber(EncDetails.aadharNumber);
                 user.setPanNumber(EncDetails.panNumber);
                 user.setCardNumber(TapCard.AthitiCardNumber);
                 user.setValidity();
-                writeNewUser(user);
+
+                storage = FirebaseStorage.getInstance();
+                storageRef = storage.getReference();
+
+                StorageReference imagesRef = storageRef.child("images");
+
+                final File imgFile = new File(currentPhotoPath);
+
+                Uri file = Uri.fromFile(new File(currentPhotoPath));
+                final StorageReference riversRef = storageRef.child("images/"+user.getCardNumber()+".jpg");
+                UploadTask uploadTask = riversRef.putFile(file);
+
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Toast.makeText(getContext(),"There seems to be an error.",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    }
+                });
+
+                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
+                        }
+                        return riversRef.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+                            Uri downloadUri = task.getResult();
+                            user.setImageURL(downloadUri.toString());
+                            writeNewUser(user);
+                        } else {
+                            Toast.makeText(getContext(), "An error was encountered. Please check your internet connection.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
                 if(status) {
 

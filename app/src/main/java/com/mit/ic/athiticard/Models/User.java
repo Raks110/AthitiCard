@@ -10,6 +10,9 @@ public class User {
     @SerializedName("cardNumber")
     @Expose
     private String cardNumber;
+    @SerializedName("imageURL")
+    @Expose
+    private String imageURL;
     @SerializedName("aadharNumber")
     @Expose
     private String aadharNumber;
@@ -75,6 +78,14 @@ public class User {
 
     public void setJobDetails(JobDetails jobDetails) {
         this.jobDetails = jobDetails;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL){
+        this.imageURL = imageURL;
     }
 
 }

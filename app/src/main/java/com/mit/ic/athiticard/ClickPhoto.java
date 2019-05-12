@@ -6,6 +6,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.roger.catloadinglibrary.CatLoadingView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -13,6 +18,8 @@ import com.squareup.picasso.Target;
 
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import android.os.Environment;
@@ -24,6 +31,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
@@ -54,7 +62,8 @@ public class ClickPhoto extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+
         view = inflater.inflate(R.layout.fragment_click_photo, container, false);
         imageView = view.findViewById(R.id.photoFrame);
 
@@ -72,14 +81,8 @@ public class ClickPhoto extends Fragment {
 
                 tv.setLayoutParams(rllp);
 
-                MaterialButton mb = view.findViewById(R.id.photoButton);
-                mb.setVisibility(View.VISIBLE);
-
-                MaterialButton cb = view.findViewById(R.id.clickToLaunch);
-                cb.setText("Re-take Picture");
-
                 mView.show(getFragmentManager(), "");
-
+                mView.setCanceledOnTouchOutside(false);
                 dispatchTakePictureIntent();
 
             }
@@ -109,7 +112,7 @@ public class ClickPhoto extends Fragment {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    private static String currentPhotoPath;
+    public static String currentPhotoPath;
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -124,7 +127,9 @@ public class ClickPhoto extends Fragment {
 
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
+
         Log.e("Storage Loc",currentPhotoPath);
+        Toast.makeText(getContext(),currentPhotoPath,Toast.LENGTH_LONG).show();
         return image;
     }
 
@@ -157,12 +162,12 @@ public class ClickPhoto extends Fragment {
         }
     }
 
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            File imgFile = new File(currentPhotoPath);
+
+            final File imgFile = new File(currentPhotoPath);
+
             if(imgFile.exists()){
                 final AtomicBoolean loaded = new AtomicBoolean();
                 Picasso.with(getContext()).load(imgFile).into(imageView, new Callback.EmptyCallback() {
@@ -170,6 +175,13 @@ public class ClickPhoto extends Fragment {
                         loaded.set(true);
                         Log.e("Picasso","Loaded Image");
                         mView.dismissAllowingStateLoss();
+
+                        MaterialButton mb = view.findViewById(R.id.photoButton);
+                        mb.setVisibility(View.VISIBLE);
+
+                        MaterialButton cb = view.findViewById(R.id.clickToLaunch);
+                        cb.setText("Re-take Picture");
+
                     }
                 });
             }

@@ -79,7 +79,8 @@ public class vendorShop extends Fragment {
 
                 SendSms.sendMsg(preqText, preferences.getInt("OTP_PIN",0));
 
-                Toast.makeText(getContext(), "OTP has been sent to " + preqText, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), "OTP has been sent to " + preqText, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"OTP is " + preferences.getInt("OTP_PIN",0),Toast.LENGTH_LONG).show();
 
             }
         });
@@ -143,7 +144,7 @@ public class vendorShop extends Fragment {
 
                 else {
 
-                    vendor.setPhoneNumber(reqText);
+                    vendor.setPhoneNumber(preqText);
                     vendor.setAadharNumber(ShopDetails.aadharNumber);
                     vendor.setPanNumber(ShopDetails.panNumber);
                     vendor.setGstNumber(ShopDetails.gstNumber);

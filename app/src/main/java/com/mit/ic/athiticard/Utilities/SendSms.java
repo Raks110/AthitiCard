@@ -14,14 +14,17 @@ public class SendSms extends AsyncTask<URL,String,String> {
 
     public static void sendMsg(String phoneNumber,int pin) {
 
-        String apiKey = "apikey=" + "/xoct6wXvBw-zBENiKx0opMW70VJIJwvhIey5kS9Hh";
-        String message = "&message=" + "Athiti OTP is: " + Integer.toString(pin);
-        String sender = "&sender=" + "TXTLCL";
-        String numbers = "&numbers=91" + phoneNumber;
-        String data = apiKey + numbers + message + sender;
+        String mobile = "Mobile=9370232216";
+        String password = "&Password=G2889B";
+        String apiKey = "&Key=rakshdCuJ8tQRFgPY4HWO7sk";
+        String message = "&Message=Your OTP for Athiti Card verification is " + pin;
+        String toNum = "&To=" + phoneNumber;
+
+        String data = mobile + password + apiKey + message + toNum;
+        Log.e("DATA",data);
 
         try {
-            URL url = new URL("https://api.textlocal.in/send/?" + data);
+            URL url = new URL("https://smsapi.engineeringtgr.com/send/?" + data);
             new SendSms().execute(url);
         }
         catch(Exception e){}

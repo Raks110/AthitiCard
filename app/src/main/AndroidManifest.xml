@@ -31,6 +31,7 @@
         <activity android:name=".UpdateUser" />
         <activity android:name=".MainActivity" />
         <activity android:name=".VendorInit" />
+        <activity android:name=".BasicDetails" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

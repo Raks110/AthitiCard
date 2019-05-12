@@ -49,7 +49,7 @@ public class ShopDetails extends Fragment {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
 
-                com.google.android.material.card.MaterialCardView mcv = view.findViewById(R.id.materialCardViewGenShop2);
+                com.google.android.material.card.MaterialCardView mcv = view.findViewById(R.id.materialCardViewShop2);
                 mcv.setVisibility(View.INVISIBLE);
 
                 fragmentTransaction.replace(R.id.initActVendor, new vendorShop());

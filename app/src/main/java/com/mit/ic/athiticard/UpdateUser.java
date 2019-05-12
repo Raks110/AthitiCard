@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -35,6 +37,8 @@ public class UpdateUser extends AppCompatActivity {
 
         MaterialButton onTapButton = findViewById(R.id.tapButton);
 
+        final Context thisCon = this;
+
         onTapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +55,8 @@ public class UpdateUser extends AppCompatActivity {
                 RelativeLayout rl = findViewById(R.id.rl_tap);
                 rl.setVisibility(View.INVISIBLE);
 
-                setContentView(R.layout.fragment_basic_details);
+                Intent intent = new Intent(thisCon,BasicDetails.class);
+                startActivity(intent);
 
             }
         });
