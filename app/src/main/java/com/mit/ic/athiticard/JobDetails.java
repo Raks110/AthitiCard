@@ -40,8 +40,8 @@ import static com.mit.ic.athiticard.ClickPhoto.currentPhotoPath;
 public class JobDetails extends Fragment {
 
     public static com.mit.ic.athiticard.Models.JobDetails jd;
-    private DatabaseReference mDatabase;
-    private boolean status;
+    private static DatabaseReference mDatabase;
+    private static boolean status;
 
     private static User user;
 
@@ -52,7 +52,7 @@ public class JobDetails extends Fragment {
 
     }
 
-    private void writeNewUser(User user) {
+    public static void writeNewUser(User user) {
 
         mDatabase.child("users").child(user.getCardNumber()).setValue(user);
         status = true;

@@ -1,5 +1,7 @@
 package com.mit.ic.athiticard;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,11 +33,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.mit.ic.athiticard.Models.User;
+import com.mit.ic.athiticard.Utilities.AddressFormats;
 import com.roger.catloadinglibrary.CatLoadingView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
@@ -44,7 +52,25 @@ import static com.mit.ic.athiticard.Utilities.DateFormats.changeFormat;
 public class BasicDetails extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
+    private DatabaseReference privateDatabase;
     private User user;
+
+    final Calendar myCalendar = Calendar.getInstance();
+    private TextView validity;
+
+    final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+
+    };
 
     public BasicDetails() {
         // Required empty public constructor
@@ -62,6 +88,8 @@ public class BasicDetails extends AppCompatActivity {
         imageView = findViewById(R.id.photoFrame);
 
         mView.show(getSupportFragmentManager(),"");
+        validity = findViewById(R.id.textViewValidity);
+
 
         loadImage();
 
@@ -104,8 +132,24 @@ public class BasicDetails extends AppCompatActivity {
                 tv = findViewById(R.id.textViewNumber);
                 tv.setText(user.getAadharNumber());
 
-                MaterialButton validity = findViewById(R.id.textViewValidity);
-                validity.setText(changeFormat(user.getValidity()));
+                tv = findViewById(R.id.textViewValidity);
+
+                tv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new DatePickerDialog(BasicDetails.this, date, myCalendar
+                                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
+
+                tv.setText(changeFormat(user.getValidity()));
+
+                tv = findViewById(R.id.personalAddress);
+                tv.setText(AddressFormats.changeFormat(user.getPersonalDetails().getAddress()));
+
+                tv = findViewById(R.id.jobAddress);
+                tv.setText(AddressFormats.changeFormatPro(user.getJobDetails().getCompanyAddress()));
 
                 Log.e(TAG,user.getCardNumber());
 
@@ -130,6 +174,24 @@ public class BasicDetails extends AppCompatActivity {
 
         Log.e(TAG,"Returning");
 
+    }
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+        Date setDate = myCalendar.getTime();
+        privateDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(UpdateUser.AthitiCardNumber).child("validity");
+        privateDatabase.setValue(setDate);
+        validity.setText(sdf.format(myCalendar.getTime()));
+
+        Toast.makeText(getApplicationContext(),"Validity Updated Successfully",Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this,activity_initial.class);
+        startActivity(intent);
     }
 }
 
